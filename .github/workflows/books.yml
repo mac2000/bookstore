@@ -1,0 +1,36 @@
+name: books
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [ "main" ]
+    paths: [ "books/**" ]
+  pull_request:
+    branches: [ "main" ]
+    paths: [ "books/**" ]
+
+jobs:
+  books:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+
+    - uses: docker/metadata-action@v4
+      id: meta
+      with:
+        images: mac2000/bookstore-books
+
+    - uses: docker/login-action@v2
+      if: github.event_name != 'pull_request'
+      with:
+        username: mac2000
+        password: ${{ secrets.DOCKER_PASSWORD }}
+
+    - uses: docker/build-push-action@v4
+      if: github.event_name != 'pull_request'
+      with:
+        context: books
+        file: Dockerfile
+        push: true
+        tags: ${{ steps.meta.outputs.tags }}
+        labels: ${{ steps.meta.outputs.labels }}
