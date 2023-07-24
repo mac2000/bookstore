@@ -1,0 +1,7 @@
+bin
+obj
+.editorconfig
+.gitignore
+docker-compose.yml
+Dockerfile
+postgres.sh
