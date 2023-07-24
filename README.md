@@ -55,3 +55,8 @@ Services are so simple that there is no need to describe each endpoint and it sh
 - `http://localhost:3000/v1/books/2/reviews`
 - `http://localhost:8080/v1/books/2/votes`
 
+## OpenTelemetry Operator
+
+![sceenshot](opentelemetry-operator/screenshot.png)
+
+in corresponding directory there is an step by step example of how to get up and running open telemetry operator
