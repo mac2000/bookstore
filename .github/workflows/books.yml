@@ -30,7 +30,7 @@ jobs:
       if: github.event_name != 'pull_request'
       with:
         context: books
-        file: Dockerfile
+        file: ./Dockerfile
         push: true
         tags: ${{ steps.meta.outputs.tags }}
         labels: ${{ steps.meta.outputs.labels }}
