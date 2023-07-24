@@ -8,6 +8,7 @@ Just go thrue `script.sh` and if everything fine you will see something like:
 
 ![screenshot](screenshot.png)
 
+Really cool and promising but adds some noticieable overhead/slowdown and even worthe - stuck, seems like need check it out little bit later
 
 ## Links
 

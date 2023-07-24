@@ -2,6 +2,6 @@ resources:
 - ../../kubernetes
 patchesStrategicMerge:
   - books.yml
-  - frontend.yml
+  # - frontend.yml
   - reviews.yml
   - votes.yml
