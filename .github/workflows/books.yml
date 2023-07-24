@@ -13,7 +13,7 @@ jobs:
     - name: git clone
       uses: actions/checkout@v3
     - name: docker login
-      run: echo ${{ secrets.DOCKER_PASSWORD }} | docker login -u mac2000
+      run: docker login --username mac2000 --password "${{ secrets.DOCKER_PASSWORD }}"
     - name: docker build
       run: docker build -f books/Dockerfile -t mac2000/bookstore-books books
     - name: docker push
