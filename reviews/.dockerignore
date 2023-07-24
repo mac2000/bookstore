@@ -1,8 +1,6 @@
-bin
-obj
-.editorconfig
+node_modules
 .gitignore
 docker-compose.yml
 Dockerfile
-postgres.sh
+mongo.sh
 .dockerignore

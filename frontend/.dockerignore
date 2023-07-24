@@ -11,3 +11,4 @@ docker-compose*
 .gitignore
 README.md
 .vscode
+.idea

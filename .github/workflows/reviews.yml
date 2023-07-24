@@ -1,0 +1,20 @@
+name: reviews
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [ "main" ]
+    paths: [ "reviews/**" ]
+
+jobs:
+  reviews:
+    runs-on: ubuntu-latest
+    steps:
+    - name: git clone
+      uses: actions/checkout@v3
+    - name: docker login
+      run: docker login --username mac2000 --password "${{ secrets.DOCKER_PASSWORD }}"
+    - name: docker build
+      run: docker build -f reviews/Dockerfile -t mac2000/bookstore-reviews reviews
+    - name: docker push
+      run: docker push mac2000/bookstore-reviews

@@ -1,0 +1,20 @@
+name: frontend
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [ "main" ]
+    paths: [ "frontend/**" ]
+
+jobs:
+  frontend:
+    runs-on: ubuntu-latest
+    steps:
+    - name: git clone
+      uses: actions/checkout@v3
+    - name: docker login
+      run: docker login --username mac2000 --password "${{ secrets.DOCKER_PASSWORD }}"
+    - name: docker build
+      run: docker build -f frontend/Dockerfile -t mac2000/bookstore-frontend frontend
+    - name: docker push
+      run: docker push mac2000/bookstore-frontend
