@@ -18,7 +18,7 @@ spec:
       containers:
       - name: frontend
         image: mac2000/bookstore-frontend
-        imagePullPolicy: IfNotPresent
+        imagePullPolicy: Always
         ports:
         - containerPort: 4000
         resources:

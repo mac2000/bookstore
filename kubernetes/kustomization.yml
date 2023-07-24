@@ -20,4 +20,3 @@ resources:
 # frontend
 - frontend/deployment.yml
 - frontend/service.yml
-- frontend/ingress.yml

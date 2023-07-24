@@ -19,7 +19,7 @@ spec:
       containers:
       - name: books
         image: mac2000/bookstore-books
-        imagePullPolicy: IfNotPresent
+        imagePullPolicy: Always
         env:
           - name: CONNECTION_STRING
             value: Host=postgres;Port=5432;Database=books;Username=books;Password=books
@@ -28,7 +28,7 @@ spec:
         resources:
           limits:
             cpu: 500m
-            memory: 256Mi
+            memory: 512Mi
           requests:
             cpu: 10m
-            memory: 128Mi
+            memory: 256Mi

@@ -18,7 +18,7 @@ spec:
       containers:
       - name: reviews
         image: mac2000/bookstore-reviews
-        imagePullPolicy: IfNotPresent
+        imagePullPolicy: Always
         env:
           - name: MONGO_URL
             value: mongodb://reviews:reviews@mongo:27017

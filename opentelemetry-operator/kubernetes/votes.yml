@@ -1,0 +1,10 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: votes
+spec:
+  template:
+    metadata:
+      annotations:
+        instrumentation.opentelemetry.io/inject-go: 'go-instrumentation'
+        sidecar.opentelemetry.io/inject: 'sidecar'
