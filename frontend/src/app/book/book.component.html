@@ -1,0 +1,40 @@
+<p>
+  <a [routerLink]="['/books']">&larr; back</a>
+</p>
+<div *ngIf="book$ | async as book; else bookLoading">
+  <table cellpadding="5" cellspacing="0" border="1">
+    <tr><th>id</th><td>{{ book.id }}</td></tr>
+    <tr><th>title</th><td>{{ book.title }}</td></tr>
+    <tr><th>pages</th><td>{{ book.pages }}</td></tr>
+    <tr><th>ganres</th><td>{{ book.ganres.join(', ') }}</td></tr>
+    <tr><th>votes</th><td>
+      <span *ngIf="votes$ | async as votes; else votesLoading">
+        {{ votes }}
+        <button (click)="upvote(book.id)">&uparrow;</button>
+        <button (click)="downvote(book.id)">&downarrow;</button>
+      </span>
+      <ng-template #votesLoading>
+        <div>loading&hellip;</div>
+      </ng-template>
+    </td></tr>
+  </table>
+  <hr />
+  <details open  *ngIf="reviews$ | async as reviews; else reviewsLoading">
+    <summary>reviews</summary>
+  <ul>
+    <li *ngFor="let review of reviews">
+      {{ review.review }}
+      <button (click)="removeReview(book.id, review._id)">&times;</button>
+    </li>
+  </ul>
+  <form (submit)="submit($event, book.id, text)">
+    <input #text type="text" placeholder="new review..." required>
+  </form>
+  </details>
+  <ng-template #reviewsLoading>
+    <div>loading&hellip;</div>
+  </ng-template>
+</div>
+<ng-template #bookLoading>
+  <div>loading&hellip;</div>
+</ng-template>

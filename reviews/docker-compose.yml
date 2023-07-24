@@ -1,0 +1,32 @@
+version: '3'
+services:
+
+  mongodb:
+    image: mongo
+    hostname: mongo
+    container_name: mongo
+    restart: always
+    ports:
+      - 27017:27017
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=reviews
+      - MONGO_INITDB_ROOT_PASSWORD=reviews
+      - MONGO_INITDB_DATABASE=reviews
+    volumes:
+      - data:/data/db
+    
+
+  reviews:
+    build: .
+    hostname: reviews
+    container_name: reviews
+    restart: always
+    depends_on:
+      - mongodb
+    ports:
+      - 3000:3000
+    environment:
+      - MONGO_URL=mongodb://reviews:reviews@mongo:27017
+
+volumes:
+  data:

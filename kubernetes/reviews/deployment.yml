@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: reviews
+  labels:
+    app: reviews
+spec:
+  selector:
+    matchLabels:
+      app: reviews
+  template:
+    metadata:
+      labels:
+        app: reviews
+    spec:
+      nodeSelector:
+        kubernetes.io/os: linux
+      containers:
+      - name: reviews
+        image: mac2000/bookstore-reviews
+        imagePullPolicy: IfNotPresent
+        env:
+          - name: MONGO_URL
+            value: mongodb://reviews:reviews@mongo:27017
+        ports:
+        - containerPort: 3000
+        resources:
+          limits:
+            cpu: 500m
+            memory: 256Mi
+          requests:
+            cpu: 10m
+            memory: 64Mi

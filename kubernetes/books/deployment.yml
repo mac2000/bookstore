@@ -1,0 +1,34 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: books
+  labels:
+    app: books
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: books
+  template:
+    metadata:
+      labels:
+        app: books
+    spec:
+      nodeSelector:
+        kubernetes.io/os: linux
+      containers:
+      - name: books
+        image: mac2000/bookstore-books
+        imagePullPolicy: IfNotPresent
+        env:
+          - name: CONNECTION_STRING
+            value: Host=postgres;Port=5432;Database=books;Username=books;Password=books
+        ports:
+        - containerPort: 80
+        resources:
+          limits:
+            cpu: 500m
+            memory: 256Mi
+          requests:
+            cpu: 10m
+            memory: 128Mi

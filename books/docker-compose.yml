@@ -1,0 +1,31 @@
+version: '3'
+services:
+
+  postgres:
+    image: postgres:latest
+    container_name: postgres
+    hostname: postgres
+    restart: always
+    environment:
+      POSTGRES_USER: books
+      POSTGRES_PASSWORD: books
+      POSTGRES_DB: books
+    ports:
+      - 5432:5432
+    volumes:
+      - data:/var/lib/postgresql/data
+
+  books:
+    build: .
+    container_name: books
+    hostname: books
+    restart: always
+    depends_on:
+      - postgres
+    environment:
+      CONNECTION_STRING: Host=postgres;Port=5432;Database=books;Username=books;Password=books
+    ports:
+      - 5001:80
+
+volumes:
+  data:

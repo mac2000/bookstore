@@ -1,0 +1,19 @@
+<button (click)="load()">reload</button>
+<table cellPadding="5" cellSpacing="0" border="1">
+  <thead>
+    <tr>
+      <th>id</th>
+      <th>title</th>
+      <th>pages</th>
+      <th>ganres</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let book of books">
+      <td>{{ book.id }}</td>
+      <td><a [routerLink]="['/books', book.id]">{{ book.title }}</a></td>
+      <td>{{ book.pages }}</td>
+      <td>{{ book.ganres.join(', ') }}</td>
+    </tr>
+  </tbody>
+</table>

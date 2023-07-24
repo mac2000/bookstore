@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: votes
+  labels:
+    app: votes
+spec:
+  selector:
+    matchLabels:
+      app: votes
+  template:
+    metadata:
+      labels:
+        app: votes
+    spec:
+      nodeSelector:
+        kubernetes.io/os: linux
+      containers:
+      - name: votes
+        image: mac2000/bookstore-votes
+        imagePullPolicy: IfNotPresent
+        env:
+          - name: REDIS_URL
+            value: redis:6379
+        ports:
+        - containerPort: 8080
+        resources:
+          limits:
+            cpu: 500m
+            memory: 256Mi
+          requests:
+            cpu: 10m
+            memory: 32Mi

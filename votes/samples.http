@@ -1,0 +1,8 @@
+### Increment
+POST http://localhost:8080/v1/books/1/votes
+
+### Decrement
+DELETE http://localhost:8080/v1/books/1/votes
+
+### Retrieve
+GET http://localhost:8080/v1/books/3/votes

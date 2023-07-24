@@ -1,0 +1,23 @@
+resources:
+# postgres
+- postgres/statefulset.yml
+- postgres/service.yml
+# mongo
+- mongo/statefulset.yml
+- mongo/service.yml
+# redis
+- redis/statefulset.yml
+- redis/service.yml
+# books
+- books/deployment.yml
+- books/service.yml
+# reviews
+- reviews/deployment.yml
+- reviews/service.yml
+# votes
+- votes/deployment.yml
+- votes/service.yml
+# frontend
+- frontend/deployment.yml
+- frontend/service.yml
+- frontend/ingress.yml
