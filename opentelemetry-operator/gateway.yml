@@ -15,13 +15,19 @@ spec:
           grpc:
           http:
     exporters:
-      jaeger:
+      otlp:
         endpoint: jaeger-all-in-one:14250
         tls:
           insecure: true
       logging:
     processors:
+      memory_limiter:
+        check_interval: 1s
+        limit_percentage: 75
+        spike_limit_percentage: 15
       batch:
+        send_batch_size: 10000
+        timeout: 10s
       resource:
         attributes:
           - key: test.key
@@ -40,4 +46,4 @@ spec:
         traces:
           receivers: [otlp]
           processors: [batch, resource]
-          exporters: [logging, jaeger]
+          exporters: [logging, otlp]
